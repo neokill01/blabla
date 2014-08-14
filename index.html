@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>BLABLA</title>
+	<meta charset="utf-8">
+	<link href="dist/css/reset.css" rel="stylesheet">
+    <link href="dist/css/blabla.css" rel="stylesheet">
+    <script src="dist/lib/libs.js" charset="utf-8"></script>
+</head>
+<body>
+	<div id="blabla-container"></div>
+</body>
+<script src="dist/js/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+    /**
+     * html5 原生websocket连接
+     */
+
+//    var socket, connected;
+//    var connect = function() {
+//        try {
+//            socket = new WebSocket("ws://localhost:4000/blabla");
+//            connected = true;
+//            console.log("websocket 连接成功……");
+//        } catch (e) {
+//            console.log("websocket 连接成功……");
+//            console.log(e.message);
+//        }
+//    };
+//    connect();
+//
+//    // 连接打开事件监听
+//    socket.onopen = function (evt) {
+//        console.log("Connection open ……");
+//    };
+//
+//    // 消息事件监听
+//    socket.onmessage = function (evt) {
+//        console.log("收到消息" + evt.data);
+//    };
+//
+//    // 连接关闭事件监听
+//    socket.onclose = function (evt) {
+//        console.log("Connection closed ……");
+//    };
+    var send;
+    var blabla = {
+            name: "BLABLA",
+            author: "junyug"
+        },
+        socket = io.connect("http://localhost:4000/blabla");
+    seajs.use("main", function (main) {
+        main.init($("#blabla-container"), blabla);
+        send = main.send
+    });
+
+    var sendMore = function (count) {
+        for (var i = 0; i< count; i++) {
+            msg = {nickname: i, content: "当前消息是第" + i + "条"};
+            send(msg);
+//            socket.emit("message", msg);
+        }
+    };
+
+</script>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "blabla",
+  "version": "0.0.0",
+  "description": "nodejs + websocket 实现一个高效的web实时通讯工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junyug/blabla.git"
+  },
+  "keywords": [
+    "chat",
+    "webchat"
+  ],
+  "author": "junyug",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/junyug/blabla/issues"
+  },
+  "homepage": "https://github.com/junyug/blabla",
+  "devDependencies": {
+    "express": "^4.8.3",
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-less": "^0.11.4",
+    "grunt-contrib-uglify": "^0.5.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "mongodb": "^1.4.7",
+    "mongoose": "^3.8.14",
+    "seajs": "^2.3.0",
+    "socket.io": "^1.0.6"
+  }
+}
