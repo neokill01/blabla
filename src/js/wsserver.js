@@ -2,31 +2,33 @@
 (function() {
   var WebSocket, ws;
 
-  WebSocket = require("ws");
+  WebSocket = require("ws").Server;
 
-  ws = new WebSocket("ws://127.0.0.1:4000/blabla", {
-    protocolVersion: 8,
-    orign: "127.0.0.1"
+  ws = new WebSocket({
+    port: 4000
   });
 
-  ws.on("open", function() {
-    console.log('connected');
-    return ws.send(Date.now().toString(), {
-      mask: true
+  ws.broadcast = function(data) {
+    var client, _i, _len, _ref, _results;
+    _ref = this.clients;
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      client = _ref[_i];
+      _results.push(client.send(data));
+    }
+    return _results;
+  };
+
+  ws.on("connection", function(client) {
+    client.on('message', function(message) {
+      console.log('received: %s', message);
+      return ws.broadcast("广播消息：" + message);
     });
-  });
-
-  ws.on("close", function() {
-    return console.log('disconnected');
-  });
-
-  ws.on("message", function(data, flags) {
-    console.log("Roundtrip time: " + (Date.now() - parseInt(data)) + "ms", flags);
-    return setTimeout(function() {
-      return ws.send(Date.now().toString(), {
-        mask: true
-      });
-    }, 500);
+    client.send("欢迎使用websocket");
+    return client.on("close", function() {
+      console.log("一个客户端断开连接");
+      return ws.broadcast("客户端断开连接");
+    });
   });
 
 }).call(this);

@@ -9,7 +9,7 @@
   app.use(express["static"](__dirname));
 
   app.get("/", function(req, res) {
-    return res.send("Hello");
+    return res.send("<h1>Hello Express</h1>");
   });
 
   server = app.listen(5555, "127.0.0.1");

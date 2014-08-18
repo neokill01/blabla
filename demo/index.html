@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+    /**
+     * html5 原生websocket连接
+     */
+    var socket = new WebSocket("ws://127.0.0.1:4000");
+
+    // 连接打开事件监听
+    socket.onopen = function (evt) {
+        console.log("Connection open ……");
+    };
+
+    // 消息事件监听
+    socket.onmessage = function (evt) {
+        console.log("客户端收到消息" + evt.data);
+        show("收到服务器发来的消息：" + evt.data);
+    };
+
+    // 连接关闭事件监听
+    socket.onclose = function (evt) {
+        console.log("Connection closed ……");
+    };
+
+    //发送消息
+    send = function (msg) {
+        socket.send(msg);
+    };
+
+    show = function (data) {
+        var body = document.getElementsByTagName("body")[0];
+        var h3 = document.createElement("h3");
+        var text = document.createTextNode(data);
+        h3.appendChild(text);
+        body.appendChild(h3);
+    };
+
+</script>
+</body>
+</html>

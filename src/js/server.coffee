@@ -3,9 +3,10 @@ express = require "express"
 app = express()
 app.use(express.static(__dirname))
 app.get("/", (req, res)->
-  res.send("Hello")
+  res.send("<h1>Hello Express</h1>")
 )
 server = app.listen 5555, "127.0.0.1"
+
 io = require("socket.io").listen 4000
 blabla = io.of "/blabla"
 users = []
