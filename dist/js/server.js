@@ -1,5 +1,5 @@
 (function() {
-  var addUser, app, blabla, checkNickname, delUser, express, io, server, users;
+  var ProtoBuf, addUser, app, blabla, checkNickname, delUser, express, io, open, server, users;
 
   express = require("express");
 
@@ -14,6 +14,10 @@
   server = app.listen(5555, "127.0.0.1");
 
   io = require("socket.io").listen(4000);
+
+  open = require("open");
+
+  ProtoBuf = require("protobufjs");
 
   blabla = io.of("/blabla");
 

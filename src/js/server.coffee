@@ -8,6 +8,9 @@ app.get("/", (req, res)->
 server = app.listen 5555, "127.0.0.1"
 
 io = require("socket.io").listen 4000
+open = require("open")
+ProtoBuf = require("protobufjs")
+
 blabla = io.of "/blabla"
 users = []
 # 添加用户
